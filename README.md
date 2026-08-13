@@ -105,3 +105,8 @@ python 4_analytics_and_rfm.py
 # Step 3: Launch the Streamlit dashboard
 streamlit run app.py
 ```
+### Screenshots of Dashboard
+
+<img width="1650" height="937" alt="Screenshot 2026-08-14 at 00 43 31" src="https://github.com/user-attachments/assets/8d13e266-b9dd-4a34-ab28-1aba8e3985cb" />
+<img width="1650" height="937" alt="Screenshot 2026-08-14 at 00 43 39" src="https://github.com/user-attachments/assets/9e61a196-e3e2-4a5d-b36d-09d5139a3a79" />
+<img width="1650" height="937" alt="Screenshot 2026-08-14 at 00 43 52" src="https://github.com/user-attachments/assets/8d86caf6-2cb3-44f4-ab83-508fb8becf80" />
