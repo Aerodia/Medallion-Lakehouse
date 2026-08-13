@@ -10,7 +10,6 @@ A production-style data lakehouse implementing the Medallion Architecture patter
 - [Repository Structure](#repository-structure)
 - [Tech Stack](#tech-stack)
 - [Getting Started](#getting-started)
-- [License](#license)
 
 ## Architecture Overview
 
@@ -54,23 +53,14 @@ The pipeline follows a three-tier Medallion Architecture:
 
 ```text
 .
-├── data/
-│   ├── bronze/          # Raw data files
-│   ├── silver/          # Cleaned intermediate files
-│   └── gold/            # Final star schema Parquet files
-│       ├── fact_sales.parquet
-│       ├── dim_customers.parquet
-│       └── dim_products.parquet
-├── docs/                # Documentation screenshots
-│   ├── kpi_dashboard.png
-│   ├── rfm_segmentation.png
-│   ├── cohort_heatmap.png
-│   └── top_products.png
-├── app.py               # Streamlit application
-├── pipeline.py          # ETL transformation pipeline
-├── requirements.txt     # Python dependencies
-├── .gitignore
-└── README.md
+├── bronze/                    # Raw ingested source files
+├── silver/                    # Cleaned, deduplicated intermediate data
+├── gold/                      # Final star schema (fact/dimension Parquet files)
+├── data/                      # Source input data
+├── runner.py                  # Orchestrates the Bronze → Silver → Gold pipeline
+├── 4_analytics_and_rfm.py     # Analytics logic: KPIs, RFM segmentation, cohort retention
+├── app.py                     # Streamlit dashboard application
+└── README.md                  # Project documentation
 ```
 
 ## Tech Stack
@@ -92,23 +82,26 @@ The pipeline follows a three-tier Medallion Architecture:
 
 ```bash
 # Clone the repository
-git clone https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git
-cd YOUR_REPO_NAME
+git clone https://github.com/Aerodia/Medallion-Lakehouse.git
+cd Medallion-Lakehouse
 
 # Create and activate a virtual environment
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 
 # Install dependencies
-pip install -r requirements.txt
+pip install pandas pyarrow duckdb streamlit plotly
 ```
 
 ### Execution
 
 ```bash
-# Step 1: Run the ETL pipeline to build the Gold layer
-python pipeline.py
+# Step 1: Run the pipeline to build the Bronze, Silver, and Gold layers
+python runner.py
 
-# Step 2: Launch the Streamlit dashboard
+# Step 2: Run analytics and RFM segmentation
+python 4_analytics_and_rfm.py
+
+# Step 3: Launch the Streamlit dashboard
 streamlit run app.py
 ```
